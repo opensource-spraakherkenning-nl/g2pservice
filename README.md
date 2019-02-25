@@ -1,0 +1,1 @@
+# Grapheme to phoneme (G2P) script and model to be used in a CLAM webservice.
