@@ -1,0 +1,5 @@
+
+host: webservices-lst.science.ru.nl
+root: /home/proycon/work/g2p-service/g2pservice/userdata
+port: 443
+url_prefix: g2p
