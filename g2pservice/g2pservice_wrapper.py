@@ -36,6 +36,7 @@ import os
 #import CLAM-specific modules. The CLAM API makes a lot of stuff easily accessible.
 import clam.common.data
 import clam.common.status
+import g2pservice
 
 #When the wrapper is started, the current working directory corresponds to the project directory, input files are in input/ , output files should go in output/ .
 
@@ -101,7 +102,7 @@ for inputfile in clamdata.input:
     inputfilepath = str(inputfile)
     if inputtemplate == 'wordlist':
         outputfilepath = os.path.join(outputdir,  os.path.basename(inputfilepath)[:-4]) #remove extension
-        os.system("phonetisaurus-apply --model " + shellsafe(inputfilepath,'"') + " --word-list " + shellsafe(inputfilepath,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(outputfilepath,'"'))
+        os.system("phonetisaurus-apply --model " + shellsafe(g2pservice.__path__, os.path.join("model.fst"),'"')+ " --word-list " + shellsafe(inputfilepath,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(outputfilepath,'"'))
 
 #(Note: Both these iteration examples will fail if you change the current working directory, so make sure to set it back to the initial path if you do need to change it!!)
 

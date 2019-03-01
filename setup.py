@@ -38,5 +38,6 @@ setup(
     ],
     package_data = {'g2pservice':['*.wsgi','*.yml','model.fst'] },
     include_package_data=True,
+    zip_safe=False,
     install_requires=['CLAM >= 2.3']
 )
