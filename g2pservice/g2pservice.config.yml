@@ -1,0 +1,2 @@
+port: 8080
+root: "{{VIRTUAL_ENV}}/g2pservice.clam"
