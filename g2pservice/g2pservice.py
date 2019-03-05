@@ -145,6 +145,7 @@ PROFILES = [
         #------------------------------------------------------------------------------------------------------------------------
         OutputTemplate('dict',PlainTextFormat,'Dictionary',
             SetMetaField('encoding','utf-8'), #note that encoding is required if you work with PlainTextFormat
+            removeextension='txt',
             extension='.dict', #set an extension or set a filename:
             #filename='filename.stats',
             unique=False
