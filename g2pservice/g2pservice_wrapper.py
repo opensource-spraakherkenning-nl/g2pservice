@@ -103,7 +103,7 @@ for inputfile in clamdata.input:
     inputfilepath = str(inputfile)
     if inputtemplate == 'wordlist':
         outputfilepath = os.path.join(outputdir, os.path.basename(inputfilepath)[:-4]) + ".dict" #remove extension and add new one
-        os.system("phonetisaurus-apply --model " + shellsafe(basedir, os.path.join("model.fst"),'"')+ " --word_list " + shellsafe(inputfilepath,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(outputfilepath,'"'))
+        os.system("phonetisaurus-apply --model " + shellsafe( os.path.join(basedir, "model.fst"),'"')+ " --word_list " + shellsafe(inputfilepath,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(outputfilepath,'"'))
 
 #(Note: Both these iteration examples will fail if you change the current working directory, so make sure to set it back to the initial path if you do need to change it!!)
 
