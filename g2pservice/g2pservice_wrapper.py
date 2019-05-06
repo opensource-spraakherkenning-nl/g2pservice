@@ -98,7 +98,7 @@ clam.common.status.write(statusfile, "Starting...")
 # This example iterates over all input files, it can be a simpler
 # method for setting up your wrapper:
 
-# added louis
+# added modelname to specify model per language
 modelname = "model_" + str(clamdata['language']) + ".fst"
 
 for inputfile in clamdata.input:
@@ -106,8 +106,6 @@ for inputfile in clamdata.input:
     inputfilepath = str(inputfile)
     if inputtemplate == 'wordlist':
         outputfilepath = os.path.join(outputdir, os.path.basename(inputfilepath)[:-4]) + ".dict" #remove extension and add new one
-        # os.system("phonetisaurus-apply --model " + shellsafe( os.path.join(basedir, "model.fst"),'"')+ " --word_list " + shellsafe(inputfilepath,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(outputfilepath,'"'))
-	# changed louis
 	os.system("phonetisaurus-apply --model " + shellsafe( os.path.join(basedir, modelname),'"')+ " --word_list " + shellsafe(inputfilepath,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(outputfilepath,'"'))
 
 
