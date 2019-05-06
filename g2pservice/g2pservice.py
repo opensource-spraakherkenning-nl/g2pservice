@@ -176,6 +176,8 @@ PROFILES = [
 #                        (set to "anonymous" if there is none)
 #     $PARAMETERS      - List of chosen parameters, using the specified flags
 #
+
+# louis: unchanged version
 COMMAND = WEBSERVICEDIR + "/g2pservice_wrapper.py $DATAFILE $STATUSFILE $OUTPUTDIRECTORY"
 
 #Or for the shell variant:
@@ -189,11 +191,13 @@ COMMAND = WEBSERVICEDIR + "/g2pservice_wrapper.py $DATAFILE $STATUSFILE $OUTPUTD
 #groups. In the form of a list of (groupname, parameters) tuples. The parameters
 #are a list of instances from common/parameters.py
 
+# louis: added language as parameter
 PARAMETERS =  [
     ('', [
         #BooleanParameter(id='createlexicon',name='Create Lexicon',description='Generate a separate overall lexicon?'),
         #ChoiceParameter(id='casesensitive',name='Case Sensitivity',description='Enable case sensitive behaviour?', choices=['yes','no'],default='no'),
         #StringParameter(id='author',name='Author',description='Sign output metadata with the specified author name',maxlength=255),
+	StringParameter(id='language',name='language',description='(dutch|english)',maxlength=255),
         IntegerParameter(id='n',name='n',description='nbest',default=1),
     ] )
 ]
