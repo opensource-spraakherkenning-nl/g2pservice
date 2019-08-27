@@ -105,8 +105,12 @@ for inputfile in clamdata.input:
     inputtemplate = inputfile.metadata.inputtemplate
     inputfilepath = str(inputfile)
     if inputtemplate == 'wordlist':
-        outputfilepath = os.path.join(outputdir, os.path.basename(inputfilepath)[:-4]) + ".dict" #remove extension and add new one
-        os.system("phonetisaurus-apply --model " + shellsafe( os.path.join(basedir, modelname),'"')+ " --word_list " + shellsafe(inputfilepath,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(outputfilepath,'"'))
+        outputfile = os.path.join(outputdir, os.path.basename(inputfilepath)[:-4]) + ".dict" #remove extension and add new one
+        phonetisaurusoutput = os.path.join(outputdir, os.path.basename(inputfilepath)[:-4]) + ".saurus"
+        lowercasewordlist = os.path.join(outputdir, os.path.basename(inputfilepath)[:-4]) + ".lc"
+        os.system("cat " + shellsafe(inputfilepath,'"') + " | perl to_lower.perl > " + shellsafe(lowercasewordlist,'"'))
+        os.system("phonetisaurus-apply --model " + shellsafe( os.path.join(basedir, modelname),'"')+ " --word_list " + shellsafe(lowercasewordlist,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(phonetisaurusoutput,'"'))
+        os.system("cat " + shellsafe(inputfilepath,'"') + " | perl find_back.perl " + shellsafe(phonetisaurusoutput,'"') + " > " + shellsafe(outputfile,'"'))
 
 
 #(Note: Both these iteration examples will fail if you change the current working directory, so make sure to set it back to the initial path if you do need to change it!!)
