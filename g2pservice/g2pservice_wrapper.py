@@ -105,12 +105,18 @@ for inputfile in clamdata.input:
     inputtemplate = inputfile.metadata.inputtemplate
     inputfilepath = str(inputfile)
     if inputtemplate == 'wordlist':
-        outputfile = os.path.join(outputdir, os.path.basename(inputfilepath)[:-4]) + ".dict" #remove extension and add new one
-        phonetisaurusoutput = os.path.join(outputdir, os.path.basename(inputfilepath)[:-4]) + ".saurus"
-        lowercasewordlist = os.path.join(outputdir, os.path.basename(inputfilepath)[:-4]) + ".lc"
-        os.system("cat " + shellsafe(inputfilepath,'"') + " | perl " + os.path.join(basedir,"to_lower.perl") + " > " + shellsafe(lowercasewordlist,'"'))
-        os.system("phonetisaurus-apply --model " + shellsafe( os.path.join(basedir, modelname),'"')+ " --word_list " + shellsafe(lowercasewordlist,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(phonetisaurusoutput,'"'))
-        os.system("cat " + shellsafe(inputfilepath,'"') + " | perl " + os.path.join(basedir, "find_back.perl") + " " + shellsafe(phonetisaurusoutput,'"') + " > " + shellsafe(outputfile,'"'))
+        basename = os.path.join(outputdir, os.path.basename(inputfilepath)[:-4])
+        inputfile_utf8 = basename + ".utf8"
+        gtp_in = basename + ".gtp_in"
+        gtp_table = basename + ".word_table"
+        phonetisaurusoutput = basename + ".gtp_out"
+        outputfile = basename + ".dict"
+        os.system("iconv -f ISO-8859-1 -t utf8 " + shellsafe(inputfilepath,'"') + " > " + shellsafe(inputfile_utf8,'"'))
+        os.system("cat " + shellsafe(inputfile_utf8,'"') + " | perl " + os.path.join(basedir,"flatten.perl") + " 0 > " + shellsafe(gtp_in,'"'))
+        os.system("cat " + shellsafe(inputfile_utf8,'"') + " | perl " + os.path.join(basedir,"flatten.perl") + " 1 > " + shellsafe(gtp_table,'"'))
+        os.system("phonetisaurus-apply --model " + shellsafe( os.path.join(basedir, modelname),'"')+ " --word_list " + shellsafe(gtp_in,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(phonetisaurusoutput,'"'))
+        os.system("cat " + shellsafe(gtp_table,'"') + " | perl " + os.path.join(basedir, "aggregate.perl") + " " + shellsafe(phonetisaurusoutput,'"') + " > " + shellsafe(outputfile,'"'))
+        
 
 
 #(Note: Both these iteration examples will fail if you change the current working directory, so make sure to set it back to the initial path if you do need to change it!!)
