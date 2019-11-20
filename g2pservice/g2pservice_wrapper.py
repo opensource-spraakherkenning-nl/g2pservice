@@ -106,7 +106,9 @@ for inputfile in clamdata.input:
     inputfilepath = str(inputfile)
     if inputtemplate == 'wordlist':
         outputfilepath = os.path.join(outputdir, os.path.basename(inputfilepath)[:-4]) + ".dict" #remove extension and add new one
-        os.system("phonetisaurus-apply --model " + shellsafe( os.path.join(basedir, modelname),'"')+ " --word_list " + shellsafe(inputfilepath,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(outputfilepath,'"'))
+        if os.system("phonetisaurus-apply --model " + shellsafe( os.path.join(basedir, modelname),'"')+ " --word_list " + shellsafe(inputfilepath,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(outputfilepath,'"')) != 0:
+            clam.common.status.write(statusfile, "Error calling phonetisaurus",100) # status update
+            sys.exit(1)
 
 
 #(Note: Both these iteration examples will fail if you change the current working directory, so make sure to set it back to the initial path if you do need to change it!!)

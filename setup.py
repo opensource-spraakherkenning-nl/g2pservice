@@ -16,7 +16,7 @@ def getreadme():
 
 setup(
     name = "g2pservice",
-    version = "0.1",
+    version = "0.1.1",
     author = "Louis ten Bosch", #adapt this
     description = ("Grapheme to Phoneme converter"),
     license = "GPL",
