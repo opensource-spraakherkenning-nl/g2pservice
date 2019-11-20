@@ -16,7 +16,7 @@ def getreadme():
 
 setup(
     name = "g2pservice",
-    version = "0.1.1",
+    version = "0.3.1",
     author = "Louis ten Bosch", #adapt this
     description = ("Grapheme to Phoneme converter"),
     license = "GPL",
@@ -36,7 +36,7 @@ setup(
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     ],
-    package_data = {'g2pservice':['*.wsgi','*.yml','model.fst'] },
+    package_data = {'g2pservice':['*.wsgi','*.yml','*.fst','*.perl'] },
     include_package_data=True,
     zip_safe=False,
     install_requires=['CLAM >= 2.3']

@@ -105,10 +105,19 @@ for inputfile in clamdata.input:
     inputtemplate = inputfile.metadata.inputtemplate
     inputfilepath = str(inputfile)
     if inputtemplate == 'wordlist':
-        outputfilepath = os.path.join(outputdir, os.path.basename(inputfilepath)[:-4]) + ".dict" #remove extension and add new one
-        if os.system("phonetisaurus-apply --model " + shellsafe( os.path.join(basedir, modelname),'"')+ " --word_list " + shellsafe(inputfilepath,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(outputfilepath,'"')) != 0:
+        basename = os.path.join(outputdir, os.path.basename(inputfilepath)[:-4])
+        inputfile_utf8 = basename + ".utf8"
+        gtp_in = basename + ".gtp_in"
+        gtp_table = basename + ".word_table"
+        phonetisaurusoutput = basename + ".gtp_out"
+        outputfile = basename + ".dict"
+        os.system("iconv -f ISO-8859-1 -t utf8 " + shellsafe(inputfilepath,'"') + " > " + shellsafe(inputfile_utf8,'"'))
+        os.system("cat " + shellsafe(inputfile_utf8,'"') + " | perl " + os.path.join(basedir,"flatten.perl") + " 0 > " + shellsafe(gtp_in,'"'))
+        os.system("cat " + shellsafe(inputfile_utf8,'"') + " | perl " + os.path.join(basedir,"flatten.perl") + " 1 > " + shellsafe(gtp_table,'"'))
+        if os.system("phonetisaurus-apply --model " + shellsafe( os.path.join(basedir, modelname),'"')+ " --word_list " + shellsafe(gtp_in,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(phonetisaurusoutput,'"')) != 0:
             clam.common.status.write(statusfile, "Error calling phonetisaurus",100) # status update
             sys.exit(1)
+        os.system("cat " + shellsafe(gtp_table,'"') + " | perl " + os.path.join(basedir, "aggregate.perl") + " " + shellsafe(phonetisaurusoutput,'"') + " > " + shellsafe(outputfile,'"'))
 
 
 #(Note: Both these iteration examples will fail if you change the current working directory, so make sure to set it back to the initial path if you do need to change it!!)
