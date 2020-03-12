@@ -49,7 +49,7 @@ SYSTEM_DESCRIPTION = "Grapheme to Phoneme converter using phonetisaurus"
 
 #A version label of the underlying tool and/or this CLAM wrapper
 #(If you can derive this dynamically then that is strongly recommended!)
-SYSTEM_VERSION = 0.3
+SYSTEM_VERSION = "0.3.2"
 
 #The author(s) of the underlying tool and/or this CLAM wrapper
 #(If you can derive this dynamically then that is strongly recommended!)
@@ -193,7 +193,7 @@ COMMAND = WEBSERVICEDIR + "/g2pservice_wrapper.py $DATAFILE $STATUSFILE $OUTPUTD
 PARAMETERS =  [
     ('', [
         #BooleanParameter(id='createlexicon',name='Create Lexicon',description='Generate a separate overall lexicon?'),
-        ChoiceParameter(id='language',name='Language',description='Language of the G2P', choices=['dutch', 'english'],default='dutch'),
+        ChoiceParameter(id='language',name='Language',description='Language of the G2P', choices=[('nld','dutch'), ('eng','english')],default='nld'),
         #StringParameter(id='author',name='Author',description='Sign output metadata with the specified author name',maxlength=255),
         IntegerParameter(id='n',name='n',description='nbest',default=1),
     ] )
