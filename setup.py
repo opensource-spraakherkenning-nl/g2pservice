@@ -18,7 +18,7 @@ setup(
     name = "g2pservice",
     version = "0.3.2",
     author = "Louis ten Bosch", #adapt this
-    description = ("Grapheme to Phoneme converter"),
+    description = ("Grapheme to Phoneme converter. Input is a list of words (utf8). Choose one of the language options."),
     license = "GPL",
     keywords = "clam webservice rest nlp computational_linguistics rest",
     url = "https://gitlab.science.ru.nl/clst-asr/g2p-service", #update this!

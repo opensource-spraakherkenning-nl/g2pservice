@@ -45,7 +45,7 @@ SYSTEM_ID = "g2pservice"
 SYSTEM_NAME = "Grapheme to Phoneme converter"
 
 #An informative description for this system (this should be fairly short, about one paragraph, and may not contain HTML)
-SYSTEM_DESCRIPTION = "Grapheme to Phoneme converter using phonetisaurus"
+SYSTEM_DESCRIPTION = "Grapheme to Phoneme (G2P) conversion. Input is a list of words (utf-8, one word per line). The G2P will output the best guess for the phonetic transcription per word. The system is trained on existing dictionaries. Please choose a language option. The system is a demo-version --- please refer to CLST for using G2P for long word lists."
 
 #A version label of the underlying tool and/or this CLAM wrapper
 #(If you can derive this dynamically then that is strongly recommended!)
@@ -193,7 +193,7 @@ COMMAND = WEBSERVICEDIR + "/g2pservice_wrapper.py $DATAFILE $STATUSFILE $OUTPUTD
 PARAMETERS =  [
     ('', [
         #BooleanParameter(id='createlexicon',name='Create Lexicon',description='Generate a separate overall lexicon?'),
-        ChoiceParameter(id='language',name='Language',description='Language of the G2P', choices=[('nld','dutch'), ('eng','english')],default='nld'),
+        ChoiceParameter(id='language',name='Language',description='Language of the G2P', choices=[('nld','dutch'), ('eng','english'), ('frisian', 'frisian')],default='nld'),
         #StringParameter(id='author',name='Author',description='Sign output metadata with the specified author name',maxlength=255),
         IntegerParameter(id='n',name='n',description='nbest',default=1),
     ] )
