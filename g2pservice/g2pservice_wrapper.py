@@ -113,7 +113,7 @@ for inputfile in clamdata.input:
         outputfile = basename + ".dict"
         # os.system("iconv -f ISO-8859-1 -t utf8 " + shellsafe(inputfilepath,'"') + " > " + shellsafe(inputfile_utf8,'"'))
         os.system("cat " + shellsafe(inputfilepath,'"') + " > " + shellsafe(inputfile_utf8,'"'))
-        os.system("cat " + shellsafe(inputfile_utf8,'"') + " | head -100 | perl " + os.path.join(basedir,"flatten.perl") + " 0 > " + shellsafe(gtp_in,'"'))
+        os.system("cat " + shellsafe(inputfile_utf8,'"') + " | head -20000 | perl " + os.path.join(basedir,"flatten.perl") + " 0 > " + shellsafe(gtp_in,'"'))
         os.system("cat " + shellsafe(inputfile_utf8,'"') + " | perl " + os.path.join(basedir,"flatten.perl") + " 1 > " + shellsafe(gtp_table,'"'))
         os.system("phonetisaurus-apply --model " + shellsafe( os.path.join(basedir, modelname),'"')+ " --word_list " + shellsafe(gtp_in,'"') + " -n " + str(clamdata['n']) + " > " + shellsafe(phonetisaurusoutput,'"'))
         os.system("cat " + shellsafe(gtp_table,'"') + " | perl " + os.path.join(basedir, "aggregate.perl") + " " + shellsafe(phonetisaurusoutput,'"') + " > " + shellsafe(outputfile,'"'))
