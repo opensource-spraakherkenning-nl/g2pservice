@@ -16,11 +16,11 @@ def getreadme():
 
 setup(
     name = "g2pservice",
-    version = "0.3.2",
-    author = "Louis ten Bosch", #adapt this
+    version = "0.3.3",
+    author = "Louis ten Bosch",
     description = ("Grapheme to Phoneme converter. Input is a list of words (utf8). Choose one of the language options."),
-    license = "GPL",
-    keywords = "clam webservice rest nlp computational_linguistics rest",
+    license = "GPL-3.0-only",
+    keywords = "speech, transcription",
     url = "https://gitlab.science.ru.nl/clst-asr/g2p-service", #update this!
     packages=['g2pservice'],
     long_description=getreadme(),
@@ -28,9 +28,10 @@ setup(
         "Development Status :: 5 - Production/Stable",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
         "Topic :: Text Processing :: Linguistic",
-        "Programming Language :: Python :: 2.7",  #remove this if needed!
-        "Programming Language :: Python :: 3.4", #3.0, 3.1 and 3.2 are not supported by flask/CLAM
-        "Programming Language :: Python :: 3.5", #3.0, 3.1 and 3.2 are not supported by flask/CLAM
+        "Programming Language :: Python :: 3.6", 
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Operating System :: POSIX",
         "Intended Audience :: Developers",
         "Intended Audience :: Science/Research",
@@ -39,5 +40,5 @@ setup(
     package_data = {'g2pservice':['*.wsgi','*.yml','*.fst','*.perl'] },
     include_package_data=True,
     zip_safe=False,
-    install_requires=['CLAM >= 2.3']
+    install_requires=['CLAM >= 3.1']
 )
