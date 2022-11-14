@@ -73,7 +73,8 @@ RUN mkdir -p /usr/src && cd /usr/src &&\
     make install &&\
     cp .libs/Phonetisaurus.so python/ &&\
     cd python &&\
-    python3 setup.py install
+    python3 setup.py install &&\
+    ln -s /usr/bin/python3 /usr/bin/python
 
 # Prepare environment
 RUN mkdir -p /etc/service/nginx /etc/service/uwsgi
