@@ -1,5 +1,5 @@
 docker:
-	docker build -t proycon/g2pservice:latest .
+	docker build --no-cache -t proycon/g2pservice:latest .
 
 docker-dev:
-	docker build -t proycon/g2pservice:dev
+	docker build --no-cache -t proycon/g2pservice:dev
