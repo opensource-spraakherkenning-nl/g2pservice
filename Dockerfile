@@ -35,7 +35,7 @@ ENV CLAM_OAUTH_CLIENT_SECRET=""
 ARG CLAM_DEV=0
 
 # Install all global dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends runit curl ca-certificates nginx uwsgi uwsgi-plugin-python3 python3-pip python3-yaml python3-lxml python3-requests python3-dev git make g++ libtool gfortran autoconf automake autoconf-archive gawk wget perl
+RUN apt-get update && apt-get install -y --no-install-recommends runit curl ca-certificates nginx uwsgi uwsgi-plugin-python3 python3-pip python3-yaml python3-lxml python3-requests python3-dev git make g++ libtool gfortran autoconf automake autoconf-archive gawk wget perl zip
 
 # Prepare environment
 RUN mkdir -p /etc/service/nginx /etc/service/uwsgi
