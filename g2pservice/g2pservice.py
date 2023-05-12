@@ -49,7 +49,7 @@ SYSTEM_DESCRIPTION = "Grapheme to Phoneme (G2P) conversion. Input is a list of w
 
 #A version label of the underlying tool and/or this CLAM wrapper
 #(If you can derive this dynamically then that is strongly recommended!)
-SYSTEM_VERSION = "0.3.2"
+SYSTEM_VERSION = "0.3.4"
 
 #The author(s) of the underlying tool and/or this CLAM wrapper
 #(If you can derive this dynamically then that is strongly recommended!)
